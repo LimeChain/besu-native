@@ -1,3 +1,5 @@
+import org.gradle.api.publish.maven.MavenPublication
+
 /*
  * Copyright ConsenSys AG.
  *
@@ -21,5 +23,19 @@ allprojects {
 
   repositories {
     mavenCentral()
+  }
+
+  apply plugin: 'maven-publish'
+
+  publishing {
+    publications {
+      mavenJava(MavenPublication) {
+        groupId "org.hyperledger.besu.internal"
+        version "${project.version}"
+        repositories {
+          mavenLocal()
+        }
+      }
+    }
   }
 }
